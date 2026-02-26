@@ -1,0 +1,371 @@
+{% extends 'core/Base.html' %}
+{% block title %}
+    Home
+{% endblock %}
+{% block content %}
+    <section class="gradient-bg text-white py-16 md:py-24 lg:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6 md:space-y-8">
+                        <h2
+                            class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+                        >
+                            Our Vision
+                        </h2>
+                        <p
+                            class="text-base md:text-lg lg:text-xl text-gray-200 leading-relaxed"
+                        >
+                            To create a world where everyone's life — regardless
+                            of wealth, status, or mental health — is transformed
+                            by love. Making sure they are uplifted, supported,
+                            and connected. We envision global communities filled
+                            with peace, joy, and compassion without boundaries.
+                            Where no one is left behind and every person has the
+                            chance to thrive.
+                        </p>
+                        <div
+                            class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-4"
+                        >
+                            <a
+                                href="programs.html"
+                                class="orange-gradient text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition text-center"
+                            >
+                                Our Programs
+                            </a>
+                            <a
+                                href="{% url 'about' %}"
+                                class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-900 transition text-center"
+                            >
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex justify-center md:justify-end">
+                        <div class="relative">
+                            <div
+                                class="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 orange-gradient rounded-full flex flex-col items-center justify-center shadow-2xl"
+                            >
+                                <div class="text-center px-6">
+                                    <i
+                                        class="fas fa-hands-holding-heart text-6xl md:text-7xl text-purple-900 mb-4"
+                                    ></i>
+                                    <h3
+                                        class="text-2xl md:text-3xl font-bold text-purple-900"
+                                    >
+                                        REMA
+                                    </h3>
+                                    <h3
+                                        class="text-2xl md:text-3xl font-bold text-purple-900"
+                                    >
+                                        FOUNDATION
+                                    </h3>
+                                    <p
+                                        class="text-purple-800 mt-2 text-sm md:text-base font-medium"
+                                    >
+                                        Change Lives With Love
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="absolute -bottom-4 -right-4 w-24 h-24 bg-gray-300 rounded-full opacity-60"
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── STATS ── -->
+        <section class="py-12 bg-white border-b">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+                    <div class="text-center">
+                        <div
+                            class="text-3xl md:text-4xl font-bold text-orange-500"
+                        >
+                            5000+
+                        </div>
+                        <div class="text-gray-600 mt-2 text-sm md:text-base">
+                            Lives Impacted
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div
+                            class="text-3xl md:text-4xl font-bold text-orange-500"
+                        >
+                            50+
+                        </div>
+                        <div class="text-gray-600 mt-2 text-sm md:text-base">
+                            Communities
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div
+                            class="text-3xl md:text-4xl font-bold text-orange-500"
+                        >
+                            100+
+                        </div>
+                        <div class="text-gray-600 mt-2 text-sm md:text-base">
+                            Volunteers
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div
+                            class="text-3xl md:text-4xl font-bold text-orange-500"
+                        >
+                            24/7
+                        </div>
+                        <div class="text-gray-600 mt-2 text-sm md:text-base">
+                            Support Available
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── WHO WE ARE ── -->
+        <section class="py-16 md:py-24 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2
+                        class="text-3xl md:text-4xl lg:text-5xl font-bold text-purple-900 mb-4"
+                    >
+                        Who We Are
+                    </h2>
+                    <p
+                        class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto"
+                    >
+                        Dedicated to creating lasting change through compassion
+                        and community support
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div
+                        class="bg-white p-6 md:p-8 rounded-xl shadow-md hover-lift"
+                    >
+                        <div
+                            class="w-16 h-16 orange-gradient rounded-full flex items-center justify-center mb-6"
+                        >
+                            <i
+                                class="fas fa-hand-holding-heart text-white text-2xl"
+                            ></i>
+                        </div>
+                        <h3
+                            class="text-xl md:text-2xl font-bold text-purple-900 mb-4"
+                        >
+                            Our Mission
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            To provide comprehensive support and resources to
+                            underprivileged communities, ensuring everyone has
+                            access to basic needs.
+                        </p>
+                    </div>
+                    <div
+                        class="bg-white p-6 md:p-8 rounded-xl shadow-md hover-lift"
+                    >
+                        <div
+                            class="w-16 h-16 orange-gradient rounded-full flex items-center justify-center mb-6"
+                        >
+                            <i class="fas fa-users text-white text-2xl"></i>
+                        </div>
+                        <h3
+                            class="text-xl md:text-2xl font-bold text-purple-900 mb-4"
+                        >
+                            Our Approach
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            We believe in sustainable, community-driven
+                            solutions that empower individuals and create
+                            lasting positive change.
+                        </p>
+                    </div>
+                    <div
+                        class="bg-white p-6 md:p-8 rounded-xl shadow-md hover-lift"
+                    >
+                        <div
+                            class="w-16 h-16 orange-gradient rounded-full flex items-center justify-center mb-6"
+                        >
+                            <i class="fas fa-globe text-white text-2xl"></i>
+                        </div>
+                        <h3
+                            class="text-xl md:text-2xl font-bold text-purple-900 mb-4"
+                        >
+                            Our Reach
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Operating across multiple regions, working directly
+                            with local communities to identify needs and
+                            implement programs.
+                        </p>
+                    </div>
+                </div>
+                <div class="text-center mt-12">
+                    <a
+                        href="{% url 'about' %}"
+                        class="inline-block gradient-bg text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition"
+                    >
+                        Learn More About Us
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── PROGRAMS PREVIEW ── -->
+        <section class="py-16 md:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2
+                        class="text-3xl md:text-4xl lg:text-5xl font-bold text-purple-900 mb-4"
+                    >
+                        Our Programs
+                    </h2>
+                    <p
+                        class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto"
+                    >
+                        Comprehensive support programs designed to address
+                        critical needs
+                    </p>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    <div
+                        class="bg-gray-50 rounded-xl overflow-hidden hover-lift"
+                    >
+                        <div class="orange-gradient p-6 text-white">
+                            <i class="fas fa-graduation-cap text-4xl mb-4"></i>
+                            <h3 class="text-xl md:text-2xl font-bold">
+                                Education Support
+                            </h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600">
+                                Providing scholarships, school supplies, and
+                                educational resources to children in need.
+                            </p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-gray-50 rounded-xl overflow-hidden hover-lift"
+                    >
+                        <div class="orange-gradient p-6 text-white">
+                            <i class="fas fa-utensils text-4xl mb-4"></i>
+                            <h3 class="text-xl md:text-2xl font-bold">
+                                Food Security
+                            </h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600">
+                                Ensuring families have access to nutritious
+                                meals and addressing food insecurity.
+                            </p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-gray-50 rounded-xl overflow-hidden hover-lift"
+                    >
+                        <div class="orange-gradient p-6 text-white">
+                            <i class="fas fa-heartbeat text-4xl mb-4"></i>
+                            <h3 class="text-xl md:text-2xl font-bold">
+                                Healthcare Access
+                            </h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600">
+                                Facilitating access to medical care and mental
+                                health support services.
+                            </p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-gray-50 rounded-xl overflow-hidden hover-lift"
+                    >
+                        <div class="orange-gradient p-6 text-white">
+                            <i class="fas fa-home text-4xl mb-4"></i>
+                            <h3 class="text-xl md:text-2xl font-bold">
+                                Shelter & Housing
+                            </h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600">
+                                Supporting families with safe housing solutions
+                                and emergency shelter services.
+                            </p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-gray-50 rounded-xl overflow-hidden hover-lift"
+                    >
+                        <div class="orange-gradient p-6 text-white">
+                            <i class="fas fa-briefcase text-4xl mb-4"></i>
+                            <h3 class="text-xl md:text-2xl font-bold">
+                                Skills Training
+                            </h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600">
+                                Empowering individuals with vocational training
+                                and employment opportunities.
+                            </p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-gray-50 rounded-xl overflow-hidden hover-lift"
+                    >
+                        <div class="orange-gradient p-6 text-white">
+                            <i class="fas fa-hands-helping text-4xl mb-4"></i>
+                            <h3 class="text-xl md:text-2xl font-bold">
+                                Community Building
+                            </h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600">
+                                Creating strong, supportive communities through
+                                events and connection programs.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-12">
+                    <a
+                        href="programs.html"
+                        class="inline-block orange-gradient text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition"
+                    >
+                        View All Programs
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── CTA ── -->
+        <section class="py-16 md:py-24 gradient-bg text-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+                    Make a Difference Today
+                </h2>
+                <p class="text-lg md:text-xl text-gray-200 mb-8 md:mb-12">
+                    Your contribution helps us continue our mission of
+                    transforming lives through love and compassion. Every
+                    donation makes a real impact.
+                </p>
+                <div
+                    class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4"
+                >
+                    <a
+                        href="donate.html"
+                        class="orange-gradient text-white px-8 md:px-12 py-3 md:py-4 rounded-full font-semibold text-lg hover:opacity-90 transition"
+                    >
+                        <i class="fas fa-heart mr-2"></i> Donate Now
+                    </a>
+                    <a
+                        href="{% url 'contact' %}"
+                        class="bg-white text-purple-900 px-8 md:px-12 py-3 md:py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition"
+                    >
+                        <i class="fas fa-hands-helping mr-2"></i> Get Involved
+                    </a>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}

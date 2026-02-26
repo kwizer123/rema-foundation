@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rema | {% block title %}
+    
+    {% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    {% block extra_css  %}
+
+    {% endblock %}
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+        body {
+            font-family: "Inter", sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #3d2f47 0%, #2d1f37 100%);
+        }
+        .orange-gradient {
+            background: linear-gradient(135deg, #ff9f40 0%, #ff8520 100%);
+        }
+
+        .hover-lift {
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff9f40;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="gradient-bg text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <a href="{% url 'home' %}" class="flex items-center space-x-3">
+                    <div class="bg-orange-500 rounded-lg p-2">
+                        <i class="fas fa-heart text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <p
+                            class="text-xl md:text-2xl font-bold leading-tight"
+                        >
+                            REMA FOUNDATION
+                        </p>
+                        <p class="text-xs text-gray-300 hidden sm:block">
+                            Change Lives With Love
+                        </p>
+                    </div>
+                </a>
+                <div
+                    class="hidden md:flex items-center space-x-8 text-sm font-medium"
+                >
+                    <a
+                        href= "{% url 'home' %}"
+                        class="nav-link hover:text-orange-400 transition"
+                        >Home</a
+                    >
+                    <a
+                        href="{% url 'about' %}"
+                        class="nav-link active text-orange-400"
+                        >About</a
+                    >
+                    <a
+                        href="programs.html"
+                        class="nav-link hover:text-orange-400 transition"
+                        >Programs</a
+                    >
+                    <a
+                        href="impact.html"
+                        class="nav-link hover:text-orange-400 transition"
+                        >Impact</a
+                    >
+                    <a
+                        href="{% url 'contact' %}"
+                        class="nav-link hover:text-orange-400 transition"
+                        >Contact</a
+                    >
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a
+                        href="donate.html"
+                        class="orange-gradient text-white px-4 md:px-6 py-2 rounded-full font-semibold hover:opacity-90 transition text-sm md:text-base"
+                    >
+                        Donate Now
+                    </a>
+                    <button class="md:hidden text-white">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    {% block content %}
+    
+    {% endblock %}
+    
+    
+    <footer class="gradient-bg text-white py-12 mt-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="bg-orange-500 rounded-lg p-2">
+                            <i class="fas fa-heart text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-xl font-bold">REMA FOUNDATION</p>
+                            <p class="text-xs text-gray-300">
+                                Change Lives With Love
+                            </p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Transforming lives through love, compassion, and
+                        unwavering commitment to those in need.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-orange-400">
+                        Quick Links
+                    </h4>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li>
+                            <a
+                                href="{% url 'about' %}"
+                                class="hover:text-orange-400 transition"
+                                >About Us</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="programs.html"
+                                class="hover:text-orange-400 transition"
+                                >Programs</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="impact.html"
+                                class="hover:text-orange-400 transition"
+                                >Our Impact</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="{% url 'contact' %}"
+                                class="hover:text-orange-400 transition"
+                                >Contact</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-orange-400">
+                        Get Involved
+                    </h4>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li>
+                            <a
+                                href="donate.html"
+                                class="hover:text-orange-400 transition"
+                                >Donate</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="{% url 'contact' %}"
+                                class="hover:text-orange-400 transition"
+                                >Volunteer</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="{% url 'contact' %}"
+                                class="hover:text-orange-400 transition"
+                                >Partner With Us</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="{% url 'contact' %}"
+                                class="hover:text-orange-400 transition"
+                                >Fundraise</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-orange-400">
+                        Follow Us
+                    </h4>
+                    <div class="flex space-x-3 mb-4">
+                        <a
+                            href="#"
+                            class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center hover:bg-orange-600 transition"
+                            ><i class="fab fa-facebook-f text-sm"></i
+                        ></a>
+                        <a
+                            href="#"
+                            class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center hover:bg-orange-600 transition"
+                            ><i class="fab fa-twitter text-sm"></i
+                        ></a>
+                        <a
+                            href="#"
+                            class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center hover:bg-orange-600 transition"
+                            ><i class="fab fa-instagram text-sm"></i
+                        ></a>
+                        <a
+                            href="#"
+                            class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center hover:bg-orange-600 transition"
+                            ><i class="fab fa-linkedin-in text-sm"></i
+                        ></a>
+                    </div>
+                    <p class="text-gray-300 text-sm">
+                        <i class="fas fa-envelope mr-2 text-orange-400"></i
+                        >hello@remafoundation.org
+                    </p>
+                    <p class="text-gray-300 text-sm mt-1">
+                        <i class="fas fa-phone mr-2 text-orange-400"></i
+                        >+250 780 000 000
+                    </p>
+                </div>
+            </div>
+            <div
+                class="border-t border-gray-600 pt-8 text-center text-gray-400 text-sm"
+            >
+                <p>
+                    &copy; 2025 REMA Foundation. All rights reserved. Made
+                    with
+                    <i class="fas fa-heart text-orange-400 mx-1"></i> for a
+                    better world.
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
