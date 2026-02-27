@@ -13,3 +13,7 @@ def about_us(request):
 
 def contact_us(request):
     return render(request,'core/ContactUs.html')
+
+
+def donate(request):
+    return render()
