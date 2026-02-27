@@ -16,4 +16,4 @@ def contact_us(request):
 
 
 def donate(request):
-    return render()
+    return render(request,'core/donate.html')
