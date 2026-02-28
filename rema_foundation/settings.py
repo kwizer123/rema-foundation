@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 
+from django.contrib import staticfiles
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +27,7 @@ SECRET_KEY = 'django-insecure-8#&d%%&#p!4d@z#_jxwudn@*rcqyn@*o3&niff5h#=7(p1s)h!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['Gabin1234.pythonanywhere.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -116,13 +118,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
-
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+# This tells Django where to look for files during development
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-BASE_DIR = Path(__file__).resolve().parent.parent
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# This tells Django where to put files for production (PythonAnywhere)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Default primary key field type
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
