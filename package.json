@@ -1,0 +1,24 @@
+{
+  "name": "rema_foundation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:css": "npx @tailwindcss/cli -i ./static/core/css/styles.css -o ./static/core/dist/styles.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kwizer123/rema-foundation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kwizer123/rema-foundation/issues"
+  },
+  "homepage": "https://github.com/kwizer123/rema-foundation#readme",
+  "description": "",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.2.1",
+    "tailwindcss": "^4.2.1"
+  }
+}
