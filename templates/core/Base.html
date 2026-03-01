@@ -15,50 +15,54 @@
 </head>
 <body class="bg-gray-50">
     <nav class="gradient-bg text-white shadow-lg sticky top-0 z-50">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16 md:h-20">
-              <!-- Logo -->
-              <a href="{% url 'home' %}" class="flex items-center space-x-3">
-                <div class="bg-orange-500 rounded-lg p-2">
-                  <i class="fas fa-heart text-white text-xl"></i>
-                </div>
-                <div>
-                  <p class="text-xl md:text-2xl font-bold leading-tight">REMA FOUNDATION</p>
-                  <p class="text-xs text-gray-300 hidden sm:block">Change Lives With Love</p>
-                </div>
-              </a>
-
-              <!-- Desktop Menu -->
-              <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
-                <a href="{% url 'home' %}" class="nav-link hover:text-orange-400 transition">Home</a>
-                <a href="{% url 'about' %}" class="nav-link active text-orange-400">About</a>
-                <a href="programs.html" class="nav-link hover:text-orange-400 transition">Programs</a>
-                <a href="impact.html" class="nav-link hover:text-orange-400 transition">Impact</a>
-                <a href="{% url 'contact' %}" class="nav-link hover:text-orange-400 transition">Contact</a>
-              </div>
-
-              <!-- Donate & Hamburger -->
-              <div class="flex items-center space-x-4">
-                <a href="donate.html" class="orange-gradient text-white px-4 md:px-6 py-2 rounded-full font-semibold hover:opacity-90 transition text-sm md:text-base">
-                  Donate Now
-                </a>
-                <button class="md:hidden focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
-                  <i class="fas fa-bars text-2xl"></i>
-                </button>
-              </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16 md:h-20">
+          <!-- Logo -->
+          <a href="{% url 'home' %}" class="flex items-center space-x-3">
+            <div class="bg-orange-500 rounded-lg p-2">
+              <i class="fas fa-heart text-white text-xl"></i>
             </div>
+            <div>
+              <p class="text-xl md:text-2xl font-bold leading-tight">REMA FOUNDATION</p>
+              <p class="text-xs text-gray-300 hidden sm:block">Change Lives With Love</p>
+            </div>
+          </a>
+
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+            <a href="{% url 'home' %}" class="nav-link hover:text-orange-400 transition">Home</a>
+            <a href="{% url 'about' %}" class="nav-link active text-orange-400">About</a>
+            <a href="programs.html" class="nav-link hover:text-orange-400 transition">Programs</a>
+            <a href="impact.html" class="nav-link hover:text-orange-400 transition">Impact</a>
+            <a href="{% url 'contact' %}" class="nav-link hover:text-orange-400 transition">Contact</a>
           </div>
 
-          <!-- Mobile Menu -->
-          <div id="mobile-menu" class="md:hidden hidden bg-gray-900 text-white px-4 py-4 space-y-2 transition-all duration-300">
-            <a href="{% url 'home' %}" class="block py-2 px-2 rounded hover:bg-orange-500 hover:text-white transition">Home</a>
-            <a href="{% url 'about' %}" class="block py-2 px-2 rounded hover:bg-orange-500 hover:text-white transition">About</a>
-            <a href="programs.html" class="block py-2 px-2 rounded hover:bg-orange-500 hover:text-white transition">Programs</a>
-            <a href="impact.html" class="block py-2 px-2 rounded hover:bg-orange-500 hover:text-white transition">Impact</a>
-            <a href="{% url 'contact' %}" class="block py-2 px-2 rounded hover:bg-orange-500 hover:text-white transition">Contact</a>
+          <!-- Donate & Hamburger -->
+          <div class="flex items-center space-x-4">
+            <!-- Donate button only visible on md+ screens -->
+            <a href="donate.html" class="orange-gradient text-white px-4 md:px-6 py-2 rounded-full font-semibold hover:opacity-90 transition text-sm md:text-base hidden md:flex">
+              Donate Now
+            </a>
+
+            <!-- Hamburger button (always visible on mobile) -->
+            <button class="md:hidden focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+              <i class="fas fa-bars text-2xl"></i>
+            </button>
           </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="md:hidden hidden bg-gray-900 text-white px-4 py-4 space-y-2 transition-all duration-300">
+        <a href="{% url 'home' %}" class="block py-2 px-2 rounded hover:bg-orange-500 hover:text-white transition">Home</a>
+        <a href="{% url 'about' %}" class="block py-2 px-2 rounded hover:bg-orange-500 hover:text-white transition">About</a>
+        <a href="programs.html" class="block py-2 px-2 rounded hover:bg-orange-500 hover:text-white transition">Programs</a>
+        <a href="impact.html" class="block py-2 px-2 rounded hover:bg-orange-500 hover:text-white transition">Impact</a>
+        <a href="{% url 'contact' %}" class="block py-2 px-2 rounded hover:bg-orange-500 hover:text-white transition">Contact</a>
+        <!-- Donate button inside mobile menu -->
+        <a href="donate.html" class="block bg-orange-500 text-white px-4 py-2 rounded-full text-center hover:opacity-90 transition">Donate Now</a>
+      </div>
     </nav>
-
     {% block content %}
     
     {% endblock %}
