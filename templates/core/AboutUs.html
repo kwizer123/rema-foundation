@@ -1,5 +1,5 @@
 {% extends 'core/Base.html' %}
-
+{% load static %}
 {% block title %}
     AboutUs
 {% endblock %}
@@ -45,17 +45,14 @@
         <!-- Mission -->
         <section class="mb-20">
             <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div
-                    class="bg-gray-100 rounded-2xl overflow-hidden shadow-md"
-                >
-                    <div
-                        class="orange-gradient h-64 md:h-80 flex items-center justify-center"
-                    >
-                        <i
-                            class="fas fa-hand-holding-heart text-white"
-                            style="font-size: 7rem; opacity: 0.3"
-                        ></i>
-                    </div>
+                <!-- IMAGE 1: Replace YOUR_IMAGE_HERE with your image path e.g. /static/images/mission.jpg -->
+                <!-- Recommended: A warm photo of volunteers or people helping, ideally 800x600px -->
+                <div class="rounded-2xl overflow-hidden shadow-md">
+                    <img
+                        src="{% static 'core/images/mission.jpg' %}"
+                        alt="Our mission – helping hands"
+                        class="w-full h-64 md:h-80 object-cover"
+                    />
                 </div>
                 <div>
                     <span
@@ -113,13 +110,15 @@
                             every person has the chance to thrive.
                         </p>
                     </div>
+                    <!-- IMAGE 2: Replace YOUR_IMAGE_HERE with your image path e.g. /static/images/vision.jpg -->
+                    <!-- Recommended: A hopeful/uplifting community photo, works great as a circle, ideally square crop 600x600px -->
                     <div class="flex justify-center">
-                        <div
-                            class="w-48 h-48 md:w-64 md:h-64 orange-gradient rounded-full flex items-center justify-center shadow-2xl"
-                        >
-                            <i
-                                class="fas fa-users text-white text-6xl md:text-7xl"
-                            ></i>
+                        <div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-2xl border-4 border-white/20 aspect-square">
+                            <img
+                                src="{% static 'core/images/people.jpg' %}"
+                                alt="Our vision – a connected community"
+                                class="w-full h-64 object-cover object-center"
+                            />
                         </div>
                     </div>
                 </div>
@@ -263,8 +262,17 @@
         <!-- Impact Stats -->
         <section class="mb-20">
             <div
-                class="bg-orange-50 border border-orange-100 rounded-2xl p-8 md:p-12"
+               class = "bg-orange-50 border border-orange-100 rounded-2xl p-8 md:p-12"
             >
+                <!-- IMAGE 3: Replace YOUR_IMAGE_HERE with your image path e.g. /static/images/impact.jpg -->
+                <!-- Recommended: A wide banner photo showing your work in action, ideally 1200x400px -->
+               <div class="rounded-xl overflow-hidden shadow-md mb-10">
+                    <img
+                        src="{% static 'core/images/unity.jpg' %}"
+                        alt="REMA Foundation impact in action"
+                        class="w-full h-96 md:h-100 object-cover"
+                    />
+                </div>
                 <div class="text-center mb-12">
                     <span
                         class="inline-block bg-orange-100 text-orange-600 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4"
