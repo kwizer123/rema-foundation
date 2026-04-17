@@ -3,7 +3,14 @@
 {% block title %}Contact{% endblock %}
 
 {% block extra_css %}
-    <style>
+   <style>
+        body { font-family: 'Inter', sans-serif; }
+
+        .gradient-bg { background: linear-gradient(135deg, #4a1d96 0%, #6d28d9 50%, #4a1d96 100%); }
+        .orange-gradient { background: linear-gradient(135deg, #fb923c 0%, #f97316 50%, #ea580c 100%); }
+        .hover-lift { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
+
         .form-input {
             border: 2px solid #c4b5d4;
             background: #faf9fc;
@@ -14,345 +21,521 @@
             padding: 0.75rem 1rem 0.75rem 2.75rem;
             font-size: 0.875rem;
             font-family: 'Inter', sans-serif;
-        }
-        .form-input:hover:not(:focus) {
-            border-color: #9f6bbd;
-        }
-        .form-input:focus {
             outline: none;
-            border-color: #ff9f40;
-            background: #fff;
-            box-shadow: 0 0 0 4px rgba(255, 159, 64, 0.12);
         }
+        .form-input:hover:not(:focus) { border-color: #9f6bbd; }
+        .form-input:focus { border-color: #fb923c; background: #fff; box-shadow: 0 0 0 4px rgba(251,146,60,0.12); }
         .form-input::placeholder { color: #9ca3af; }
-        textarea.form-input      { resize: none; }
-        select.form-input        { appearance: none; cursor: pointer; }
+        textarea.form-input { resize: none; }
+        select.form-input { appearance: none; cursor: pointer; }
 
         .input-icon {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #ff9f40;
-            font-size: 0.875rem;
-            pointer-events: none;
+            position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+            color: #fb923c; font-size: 0.875rem; pointer-events: none;
         }
+
+        .amount-btn {
+            border: 2px solid #c4b5d4; background: #faf9fc; color: #4a1d96;
+            font-weight: 700; font-size: 0.95rem; border-radius: 0.75rem;
+            padding: 0.75rem 0.5rem; cursor: pointer; transition: all 0.2s; text-align: center;
+        }
+        .amount-btn:hover { border-color: #fb923c; color: #f97316; background: #fff8f0; }
+        .amount-btn.selected {
+            background: linear-gradient(135deg, #fb923c, #ea580c);
+            border-color: transparent; color: #fff;
+            box-shadow: 0 4px 14px rgba(249,115,22,0.4);
+        }
+
+        .freq-btn {
+            flex: 1; padding: 0.6rem 0; border-radius: 0.625rem; font-size: 0.8rem;
+            font-weight: 700; cursor: pointer; transition: all 0.2s;
+            color: #9ca3af; background: transparent; border: none;
+        }
+        .freq-btn.active {
+            background: linear-gradient(135deg, #fb923c, #ea580c);
+            color: #fff; box-shadow: 0 2px 8px rgba(249,115,22,0.35);
+        }
+
+        .pay-tab {
+            border: 2px solid #c4b5d4; background: #faf9fc; border-radius: 0.75rem;
+            padding: 0.75rem 1rem; cursor: pointer; transition: all 0.2s;
+            display: flex; align-items: center; justify-content: center;
+            gap: 0.45rem; font-size: 0.8rem; font-weight: 600; color: #4a1d96;
+        }
+        .pay-tab:hover { border-color: #9f6bbd; background: #fff; }
+        .pay-tab.active { border-color: #fb923c; background: #fff8f0; box-shadow: 0 0 0 3px rgba(251,146,60,0.12); color: #ea580c; }
+
+        @keyframes grow { from { width: 0; } to { width: var(--pct); } }
+        .progress-fill {
+            height: 100%; border-radius: 999px;
+            background: linear-gradient(90deg, #fb923c, #ea580c);
+            animation: grow 1.4s cubic-bezier(0.22,1,0.36,1) forwards;
+        }
+
+        @keyframes pulse-ring { 0% { transform: scale(1); opacity: 0.6; } 100% { transform: scale(1.6); opacity: 0; } }
+        .pulse-dot { position: relative; }
+        .pulse-dot::after {
+            content: ''; position: absolute; inset: 0; border-radius: 50%;
+            background: rgba(251,146,60,0.4); animation: pulse-ring 2s ease-out infinite;
+        }
+
+        .trust-badge { display: flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; font-weight: 600; color: #6b7280; }
+
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-up   { animation: fadeUp 0.55s ease both; }
+        .fade-up-2 { animation: fadeUp 0.55s 0.1s ease both; }
+        .fade-up-3 { animation: fadeUp 0.55s 0.2s ease both; }
     </style>
 {% endblock %}
 
 {% block content %}
 
     <!-- ── PAGE HERO ── -->
+    <!-- HERO -->
     <section class="gradient-bg text-white py-16 md:py-24">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-up">
             <span class="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-orange-300 text-xs font-semibold px-4 py-1.5 rounded-full mb-5">
-                <i class="fas fa-envelope-open-text"></i> Get In Touch
+                <i class="fas fa-heart"></i> Make a Difference
             </span>
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                Contact <span class="text-orange-400">Us</span>
+                Donate <span class="text-orange-400">Today</span>
             </h1>
             <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto">
-                Have a question, want to partner, or simply want to say hello? We'd love to hear from you.
+                Every gift — big or small — transforms a life. Join thousands of generous supporters who are making Rwanda a better place.
             </p>
         </div>
     </section>
 
-    <!-- ── BREADCRUMB ── -->
+    <!-- BREADCRUMB -->
     <div class="bg-white border-b">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
             <nav class="text-sm text-gray-500 flex items-center gap-2">
-                <a href="{% url 'home' %}" class="hover:text-orange-500 transition">Home</a>
+                <a href="#" class="hover:text-orange-500 transition">Home</a>
                 <i class="fas fa-chevron-right text-xs text-gray-300"></i>
-                <span class="text-orange-500 font-medium">Contact</span>
+                <span class="text-orange-500 font-medium">Donate</span>
             </nav>
         </div>
     </div>
 
-    <!-- ── SUCCESS / ERROR MESSAGES ── -->
-    {% if messages %}
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-            {% for message in messages %}
-                <div class="flex items-center gap-3 px-5 py-4 rounded-xl mb-3 text-sm font-medium
-                    {% if message.tags == 'success' %}bg-green-50 border border-green-200 text-green-700
-                    {% else %}bg-red-50 border border-red-200 text-red-700{% endif %}">
-                    <i class="fas {% if message.tags == 'success' %}fa-circle-check text-green-500{% else %}fa-circle-exclamation text-red-500{% endif %} text-lg"></i>
-                    {{ message }}
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
-
-    <!-- ── CONTACT INFO CARDS ── -->
+    <!-- STAT CARDS -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-6">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-            <!-- Office -->
-            <div class="bg-white rounded-xl p-7 shadow-md hover-lift flex items-start gap-5">
-                <div class="w-14 h-14 orange-gradient rounded-full flex items-center justify-center flex-shrink-0">
-                    <i class="fas fa-location-dot text-white text-xl"></i>
+            <div class="bg-white rounded-xl p-7 shadow-md hover-lift flex items-start gap-5 fade-up">
+                <div class="w-14 h-14 orange-gradient rounded-full flex items-center justify-center flex-shrink-0 pulse-dot">
+                    <i class="fas fa-child-reaching text-white text-xl relative z-10"></i>
                 </div>
                 <div>
-                    <p class="font-bold text-purple-900 text-base mb-1">Our Office</p>
-                    <p class="text-gray-500 text-sm leading-relaxed">
-                        123 Love Street, Compassion City<br>Kigali, Rwanda
-                    </p>
+                    <p class="text-2xl font-bold text-purple-900">4,200+</p>
+                    <p class="text-gray-500 text-sm leading-relaxed">Children supported<br>through our programs</p>
                 </div>
             </div>
 
-            <!-- Phone -->
-            <div class="orange-gradient rounded-xl p-7 shadow-md hover-lift flex items-start gap-5">
+            <div class="orange-gradient rounded-xl p-7 shadow-md hover-lift flex items-start gap-5 fade-up-2">
                 <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <i class="fas fa-phone text-white text-xl"></i>
+                    <i class="fas fa-people-group text-white text-xl"></i>
                 </div>
                 <div>
-                    <p class="font-bold text-white text-base mb-1">Call Us</p>
-                    <p class="text-white/80 text-sm leading-relaxed">
-                        +250 780 000 000<br>Mon–Fri &nbsp;·&nbsp; 8am–5pm
-                    </p>
+                    <p class="text-2xl font-bold text-white">32</p>
+                    <p class="text-white/80 text-sm leading-relaxed">Communities reached<br>across Rwanda</p>
                 </div>
             </div>
 
-            <!-- Email -->
-            <div class="bg-white rounded-xl p-7 shadow-md hover-lift flex items-start gap-5">
+            <div class="bg-white rounded-xl p-7 shadow-md hover-lift flex items-start gap-5 fade-up-3">
                 <div class="w-14 h-14 orange-gradient rounded-full flex items-center justify-center flex-shrink-0">
-                    <i class="fas fa-envelope text-white text-xl"></i>
+                    <i class="fas fa-hand-holding-dollar text-white text-xl"></i>
                 </div>
                 <div>
-                    <p class="font-bold text-purple-900 text-base mb-1">Email Us</p>
-                    <p class="text-gray-500 text-sm leading-relaxed">
-                        hello@remafoundation.org<br>support@remafoundation.org
-                    </p>
+                    <p class="text-2xl font-bold text-purple-900">$1.2M+</p>
+                    <p class="text-gray-500 text-sm leading-relaxed">Raised so far<br>by our supporters</p>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- ── FORM + SIDEBAR ── -->
+    <!-- PROGRESS -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div class="bg-white rounded-2xl shadow-md p-8">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-5">
+                <div>
+                    <h3 class="text-lg font-bold text-purple-900">2025 Annual Campaign</h3>
+                    <p class="text-gray-400 text-sm">Help us reach our goal before December 31</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-2xl font-bold text-orange-500">$84,200</p>
+                    <p class="text-xs text-gray-400 font-medium">of $120,000 goal</p>
+                </div>
+            </div>
+            <div class="w-full h-3 bg-purple-50 rounded-full overflow-hidden mb-3">
+                <div class="progress-fill" style="--pct: 70%;"></div>
+            </div>
+            <div class="flex items-center justify-between text-xs text-gray-400 font-medium">
+                <span>70% funded</span>
+                <span>847 donors this year</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORM + SIDEBAR -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 pb-20">
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
 
-            <!-- ── CONTACT FORM ── -->
+            <!-- FORM -->
             <div class="lg:col-span-3 bg-white rounded-2xl shadow-md p-8 md:p-10">
-                <h2 class="text-2xl font-bold text-purple-900 mb-1">Send Us a Message</h2>
-                <p class="text-gray-400 text-sm mb-8">Fill the form below and we'll respond within 24 hours.</p>
+                <h2 class="text-2xl font-bold text-purple-900 mb-1">Give a Gift</h2>
+                <p class="text-gray-400 text-sm mb-8">Choose an amount, a cause, and complete your secure donation below.</p>
 
-                <form class="space-y-5" action="{% url 'contact' %}" method="POST">
-                    {% csrf_token %}
+                <form class="space-y-6" action="#" method="POST">
 
-                    <!-- First & Last Name -->
+                    <!-- Frequency -->
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">Donation Frequency</label>
+                        <div class="flex gap-1 bg-purple-50 border border-purple-100 rounded-xl p-1">
+                            <button type="button" class="freq-btn active" onclick="setFreq(this)">One-Time</button>
+                            <button type="button" class="freq-btn" onclick="setFreq(this)">Monthly</button>
+                            <button type="button" class="freq-btn" onclick="setFreq(this)">Quarterly</button>
+                            <button type="button" class="freq-btn" onclick="setFreq(this)">Annually</button>
+                        </div>
+                        <input type="hidden" name="frequency" id="frequencyInput" value="one_time">
+                    </div>
+
+                    <!-- Amounts -->
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">Select Amount (USD)</label>
+                        <div class="grid grid-cols-3 gap-3 mb-3">
+                            <button type="button" class="amount-btn" onclick="setAmount(this,10)">$10</button>
+                            <button type="button" class="amount-btn" onclick="setAmount(this,25)">$25</button>
+                            <button type="button" class="amount-btn selected" onclick="setAmount(this,50)">$50</button>
+                            <button type="button" class="amount-btn" onclick="setAmount(this,100)">$100</button>
+                            <button type="button" class="amount-btn" onclick="setAmount(this,250)">$250</button>
+                            <button type="button" class="amount-btn" onclick="setAmount(this,500)">$500</button>
+                        </div>
+                        <div class="relative">
+                            <i class="fas fa-dollar-sign input-icon"></i>
+                            <input type="number" id="amountInput" name="amount" placeholder="Or enter custom amount"
+                                   min="1" value="50" class="form-input" oninput="clearPills()" required />
+                        </div>
+                    </div>
+
+                    <!-- Designation -->
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">Designate Your Gift</label>
+                        <div class="relative">
+                            <i class="fas fa-tag input-icon"></i>
+                            <select name="designation" class="form-input" required>
+                                <option value="" disabled selected>Where should your gift go?</option>
+                                <option value="education">Education &amp; Scholarships</option>
+                                <option value="nutrition">Nutrition &amp; Food Security</option>
+                                <option value="health">Health &amp; Medical Care</option>
+                                <option value="water">Clean Water Access</option>
+                                <option value="shelter">Shelter &amp; Housing</option>
+                                <option value="general">Where It's Needed Most</option>
+                            </select>
+                            <i class="fas fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
+                        </div>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="border-t border-dashed border-purple-100 pt-1">
+                        <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Your Details</p>
+                    </div>
+
+                    <!-- Name -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
-                            <label class="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">
-                                First Name
-                            </label>
+                            <label class="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">First Name</label>
                             <div class="relative">
                                 <i class="fas fa-user input-icon"></i>
-                                <input
-                                    type="text"
-                                    name="first_name"
-                                    placeholder="John"
-                                    value="{{ form.first_name.value|default:'' }}"
-                                    class="form-input"
-                                    required
-                                />
+                                <input type="text" name="first_name" placeholder="John" class="form-input" required />
                             </div>
-                            {% if form.first_name.errors %}
-                                <p class="text-red-500 text-xs mt-1">{{ form.first_name.errors.0 }}</p>
-                            {% endif %}
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">
-                                Last Name
-                            </label>
+                            <label class="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">Last Name</label>
                             <div class="relative">
                                 <i class="fas fa-user input-icon"></i>
-                                <input
-                                    type="text"
-                                    name="last_name"
-                                    placeholder="Doe"
-                                    value="{{ form.last_name.value|default:'' }}"
-                                    class="form-input"
-                                    required
-                                />
+                                <input type="text" name="last_name" placeholder="Doe" class="form-input" required />
                             </div>
-                            {% if form.last_name.errors %}
-                                <p class="text-red-500 text-xs mt-1">{{ form.last_name.errors.0 }}</p>
-                            {% endif %}
                         </div>
                     </div>
 
                     <!-- Email -->
                     <div>
-                        <label class="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">
-                            Email Address
-                        </label>
+                        <label class="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">Email Address</label>
                         <div class="relative">
                             <i class="fas fa-envelope input-icon"></i>
-                            <input
-                                type="email"
-                                name="email"
-                                placeholder="john@example.com"
-                                value="{{ form.email.value|default:'' }}"
-                                class="form-input"
-                                required
-                            />
+                            <input type="email" name="email" placeholder="john@example.com" class="form-input" required />
                         </div>
-                        {% if form.email.errors %}
-                            <p class="text-red-500 text-xs mt-1">{{ form.email.errors.0 }}</p>
-                        {% endif %}
                     </div>
 
                     <!-- Phone -->
                     <div>
                         <label class="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">
-                            Phone Number
+                            Phone Number <span class="normal-case font-normal text-gray-400">(optional)</span>
                         </label>
                         <div class="relative">
                             <i class="fas fa-phone input-icon"></i>
-                            <input
-                                type="tel"
-                                name="phone"
-                                placeholder="+250 780 000 000"
-                                value="{{ form.phone.value|default:'' }}"
-                                class="form-input"
-                            />
+                            <input type="tel" name="phone" placeholder="+250 780 000 000" class="form-input" />
                         </div>
                     </div>
 
-                    <!-- Subject -->
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">
-                            Subject
-                        </label>
-                        <div class="relative">
-                            <i class="fas fa-tag input-icon"></i>
-                            <select name="subject" class="form-input" required>
-                                <option value="" disabled {% if not form.subject.value %}selected{% endif %}>
-                                    Select a topic…
-                                </option>
-                                {% for value, label in form.subject.field.choices %}
-                                    {% if value %}
-                                        <option value="{{ value }}" {% if form.subject.value == value %}selected{% endif %}>
-                                            {{ label }}
-                                        </option>
-                                    {% endif %}
-                                {% endfor %}
-                            </select>
-                            <i class="fas fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
-                        </div>
-                        {% if form.subject.errors %}
-                            <p class="text-red-500 text-xs mt-1">{{ form.subject.errors.0 }}</p>
-                        {% endif %}
+                    <!-- Divider -->
+                    <div class="border-t border-dashed border-purple-100 pt-1">
+                        <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Payment Method</p>
                     </div>
 
-                    <!-- Message -->
+                    <!-- Payment tabs -->
+                    <div>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
+                            <button type="button" class="pay-tab active" onclick="setPayment(this,'card')"><i class="fas fa-credit-card"></i> Card</button>
+                            <button type="button" class="pay-tab" onclick="setPayment(this,'momo')"><i class="fas fa-mobile-screen-button"></i> MoMo</button>
+                            <button type="button" class="pay-tab" onclick="setPayment(this,'paypal')"><i class="fab fa-paypal"></i> PayPal</button>
+                            <button type="button" class="pay-tab" onclick="setPayment(this,'bank')"><i class="fas fa-building-columns"></i> Bank</button>
+                        </div>
+                        <input type="hidden" name="payment_method" id="paymentInput" value="card">
+
+                        <!-- Card Panel -->
+                        <div id="panelCard" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">Card Number</label>
+                                <div class="relative">
+                                    <i class="fas fa-credit-card input-icon"></i>
+                                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" class="form-input" />
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">Expiry</label>
+                                    <div class="relative">
+                                        <i class="fas fa-calendar input-icon"></i>
+                                        <input type="text" id="cardExpiry" placeholder="MM / YY" maxlength="7" class="form-input" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">CVV</label>
+                                    <div class="relative">
+                                        <i class="fas fa-lock input-icon"></i>
+                                        <input type="text" placeholder="123" maxlength="4" class="form-input" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- MoMo Panel -->
+                        <div id="panelMomo" class="hidden">
+                            <label class="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">MTN / Airtel Number</label>
+                            <div class="relative">
+                                <i class="fas fa-mobile-screen-button input-icon"></i>
+                                <input type="tel" placeholder="+250 780 000 000" class="form-input" />
+                            </div>
+                            <p class="text-xs text-gray-400 mt-2">You'll receive a push notification to confirm your payment.</p>
+                        </div>
+
+                        <!-- PayPal Panel -->
+                        <div id="panelPaypal" class="hidden bg-blue-50 border border-blue-100 rounded-xl p-5 text-sm text-blue-700 flex items-center gap-3">
+                            <i class="fab fa-paypal text-2xl text-blue-500"></i>
+                            <span>You'll be redirected to PayPal to complete your donation securely after submitting.</span>
+                        </div>
+
+                        <!-- Bank Panel -->
+                        <div id="panelBank" class="hidden bg-purple-50 border border-purple-100 rounded-xl p-5 text-sm space-y-2">
+                            <p class="font-bold text-purple-900 mb-2">Bank Transfer Details</p>
+                            <div class="flex justify-between text-gray-600"><span class="font-medium">Bank:</span><span>Bank of Kigali</span></div>
+                            <div class="flex justify-between text-gray-600"><span class="font-medium">Account Name:</span><span>REMA Foundation</span></div>
+                            <div class="flex justify-between text-gray-600"><span class="font-medium">Account No.:</span><span>00123456789</span></div>
+                            <div class="flex justify-between text-gray-600"><span class="font-medium">SWIFT/BIC:</span><span>BKIGRWRW</span></div>
+                            <p class="text-xs text-gray-400 pt-1">Use your full name as the payment reference.</p>
+                        </div>
+                    </div>
+
+                    <!-- Anonymous -->
+                    <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" name="anonymous" class="w-4 h-4 rounded accent-orange-500">
+                        <span class="text-sm text-gray-500">Make my donation anonymous</span>
+                    </label>
+
+                    <!-- Note -->
                     <div>
                         <label class="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">
-                            Message
+                            Leave a Note <span class="normal-case font-normal text-gray-400">(optional)</span>
                         </label>
                         <div class="relative">
                             <i class="fas fa-message absolute left-4 top-4 text-orange-400 text-sm pointer-events-none"></i>
-                            <textarea
-                                name="message"
-                                rows="5"
-                                placeholder="Write your message here…"
-                                class="form-input"
-                                required
-                            >{{ form.message.value|default:'' }}</textarea>
+                            <textarea name="note" rows="3" placeholder="Share why you're giving or send a word of encouragement…"
+                                class="form-input" style="padding-left:2.75rem;"></textarea>
                         </div>
-                        {% if form.message.errors %}
-                            <p class="text-red-500 text-xs mt-1">{{ form.message.errors.0 }}</p>
-                        {% endif %}
                     </div>
 
-                    <!-- Submit -->
-                    <button
-                        type="submit"
-                        class="orange-gradient w-full py-3.5 rounded-xl font-bold text-white text-sm flex items-center justify-center gap-2 hover:opacity-90 transition"
-                    >
-                        <i class="fas fa-paper-plane"></i> Send Message
+                    <!-- Trust strip -->
+                    <div class="flex flex-wrap gap-5 pt-2 border-t border-dashed border-purple-100">
+                        <span class="trust-badge"><i class="fas fa-shield-halved text-green-500 text-base"></i> SSL Secured</span>
+                        <span class="trust-badge"><i class="fas fa-lock text-orange-400 text-base"></i> PCI Compliant</span>
+                        <span class="trust-badge"><i class="fas fa-certificate text-purple-500 text-base"></i> Registered NGO</span>
+                        <span class="trust-badge"><i class="fas fa-receipt text-blue-400 text-base"></i> Tax Deductible</span>
+                    </div>
+
+                    <button type="submit"
+                        class="orange-gradient w-full py-3.5 rounded-xl font-bold text-white text-sm flex items-center justify-center gap-2 hover:opacity-90 transition">
+                        <i class="fas fa-heart"></i> Complete My Donation
                     </button>
 
                 </form>
             </div>
 
-            <!-- ── SIDEBAR ── -->
+            <!-- SIDEBAR -->
             <div class="lg:col-span-2 flex flex-col gap-6">
 
-                <!-- Map -->
-                <div class="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col flex-1">
-                    <div class="orange-gradient h-44 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0" style="background-image: radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px); background-size: 20px 20px;"></div>
-                        <i class="fas fa-map-location-dot text-white relative z-10" style="font-size: 4rem; opacity: 0.6;"></i>
-                    </div>
-                    <div class="p-7 flex flex-col gap-4">
-                        <div>
-                            <p class="font-bold text-purple-900 text-lg mb-1">Find Us Here</p>
-                            <p class="text-gray-400 text-sm">123 Love Street, Kigali, Rwanda</p>
-                        </div>
-                        <a href="https://maps.google.com" target="_blank"
-                           class="orange-gradient inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold text-white text-sm hover:opacity-90 transition">
-                            <i class="fas fa-directions"></i> Get Directions
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Social -->
+                <!-- Impact -->
                 <div class="bg-white rounded-2xl shadow-md p-7">
-                    <p class="font-bold text-purple-900 mb-1">Follow Our Journey</p>
-                    <p class="text-gray-400 text-xs mb-5">Stay connected &amp; see how we're changing lives.</p>
-                    <div class="flex flex-wrap gap-3">
-                        <a href="#" class="flex items-center gap-2 border border-gray-200 hover:border-orange-400 hover:text-orange-500 bg-gray-50 hover:bg-orange-50 transition rounded-xl px-4 py-2.5 text-sm font-medium text-gray-600">
-                            <i class="fab fa-facebook text-orange-500"></i> Facebook
-                        </a>
-                        <a href="#" class="flex items-center gap-2 border border-gray-200 hover:border-orange-400 hover:text-orange-500 bg-gray-50 hover:bg-orange-50 transition rounded-xl px-4 py-2.5 text-sm font-medium text-gray-600">
-                            <i class="fab fa-twitter text-orange-500"></i> Twitter
-                        </a>
-                        <a href="#" class="flex items-center gap-2 border border-gray-200 hover:border-orange-400 hover:text-orange-500 bg-gray-50 hover:bg-orange-50 transition rounded-xl px-4 py-2.5 text-sm font-medium text-gray-600">
-                            <i class="fab fa-instagram text-orange-500"></i> Instagram
-                        </a>
-                        <a href="#" class="flex items-center gap-2 border border-gray-200 hover:border-orange-400 hover:text-orange-500 bg-gray-50 hover:bg-orange-50 transition rounded-xl px-4 py-2.5 text-sm font-medium text-gray-600">
-                            <i class="fab fa-youtube text-orange-500"></i> YouTube
-                        </a>
-                        <a href="#" class="flex items-center gap-2 border border-gray-200 hover:border-orange-400 hover:text-orange-500 bg-gray-50 hover:bg-orange-50 transition rounded-xl px-4 py-2.5 text-sm font-medium text-gray-600">
-                            <i class="fab fa-linkedin text-orange-500"></i> LinkedIn
-                        </a>
+                    <p class="font-bold text-purple-900 text-lg mb-1">Your Gift in Action</p>
+                    <p class="text-gray-400 text-xs mb-5">See the real difference your donation makes.</p>
+                    <div class="space-y-3">
+
+                        <div class="flex items-center gap-4 p-3.5 rounded-xl bg-orange-50 border border-orange-100">
+                            <div class="w-11 h-11 orange-gradient rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-book-open text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-purple-900 text-sm">$10</p>
+                                <p class="text-gray-500 text-xs">Buys school supplies for one child for a full term</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 p-3.5 rounded-xl bg-orange-50 border border-orange-100">
+                            <div class="w-11 h-11 orange-gradient rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-bowl-food text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-purple-900 text-sm">$25</p>
+                                <p class="text-gray-500 text-xs">Provides nutritious meals for a family for one month</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 p-3.5 rounded-xl border-2 border-orange-400 bg-white shadow-sm">
+                            <div class="w-11 h-11 orange-gradient rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-user-graduate text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-purple-900 text-sm">$50 <span class="text-orange-500 text-xs font-semibold">— Most Popular</span></p>
+                                <p class="text-gray-500 text-xs">Sponsors a child's education for an entire semester</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 p-3.5 rounded-xl bg-orange-50 border border-orange-100">
+                            <div class="w-11 h-11 orange-gradient rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-droplet text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-purple-900 text-sm">$100</p>
+                                <p class="text-gray-500 text-xs">Funds clean water access for 10 families for a year</p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
-                <!-- FAQ -->
+                <!-- Recent donors -->
+                <div class="bg-white rounded-2xl shadow-md p-7">
+                    <p class="font-bold text-purple-900 mb-1">Recent Donors</p>
+                    <p class="text-gray-400 text-xs mb-5">Join these incredible people making a difference.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 orange-gradient rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">AM</div>
+                            <div class="flex-1 min-w-0"><p class="text-sm font-semibold text-purple-900 truncate">Amina M.</p><p class="text-xs text-gray-400">2 hours ago</p></div>
+                            <span class="text-sm font-bold text-orange-500">$50</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 orange-gradient rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">JK</div>
+                            <div class="flex-1 min-w-0"><p class="text-sm font-semibold text-purple-900 truncate">Jean K.</p><p class="text-xs text-gray-400">5 hours ago</p></div>
+                            <span class="text-sm font-bold text-orange-500">$100</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 orange-gradient rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">SM</div>
+                            <div class="flex-1 min-w-0"><p class="text-sm font-semibold text-purple-900 truncate">Sarah M.</p><p class="text-xs text-gray-400">Yesterday</p></div>
+                            <span class="text-sm font-bold text-orange-500">$25</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 orange-gradient rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">PU</div>
+                            <div class="flex-1 min-w-0"><p class="text-sm font-semibold text-purple-900 truncate">Peter U.</p><p class="text-xs text-gray-400">Yesterday</p></div>
+                            <span class="text-sm font-bold text-orange-500">$250</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 orange-gradient rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">GN</div>
+                            <div class="flex-1 min-w-0"><p class="text-sm font-semibold text-purple-900 truncate">Grace N.</p><p class="text-xs text-gray-400">2 days ago</p></div>
+                            <span class="text-sm font-bold text-orange-500">$500</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Share -->
                 <div class="bg-orange-50 border border-orange-100 rounded-2xl p-7">
                     <div class="flex items-center gap-3 mb-3">
                         <div class="w-10 h-10 orange-gradient rounded-full flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-circle-question text-white"></i>
+                            <i class="fas fa-share-nodes text-white"></i>
                         </div>
-                        <p class="font-bold text-purple-900">Have More Questions?</p>
+                        <p class="font-bold text-purple-900">Spread the Word</p>
                     </div>
-                    <p class="text-gray-500 text-sm mb-5 leading-relaxed">
-                        Browse our FAQ page for quick answers to the most common questions about our work and programs.
-                    </p>
-                    <a href="#" class="inline-flex items-center gap-2 text-orange-500 text-sm font-semibold hover:underline underline-offset-4">
-                        Visit FAQ Page <i class="fas fa-arrow-right text-xs"></i>
-                    </a>
+                    <p class="text-gray-500 text-sm mb-5 leading-relaxed">Can't donate right now? Share our mission with friends and family to multiply the impact.</p>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="#" class="flex items-center gap-2 border border-gray-200 hover:border-orange-400 hover:text-orange-500 bg-white hover:bg-orange-50 transition rounded-xl px-4 py-2.5 text-sm font-medium text-gray-600">
+                            <i class="fab fa-facebook text-orange-500"></i> Share
+                        </a>
+                        <a href="#" class="flex items-center gap-2 border border-gray-200 hover:border-orange-400 hover:text-orange-500 bg-white hover:bg-orange-50 transition rounded-xl px-4 py-2.5 text-sm font-medium text-gray-600">
+                            <i class="fab fa-twitter text-orange-500"></i> Tweet
+                        </a>
+                        <a href="#" class="flex items-center gap-2 border border-gray-200 hover:border-orange-400 hover:text-orange-500 bg-white hover:bg-orange-50 transition rounded-xl px-4 py-2.5 text-sm font-medium text-gray-600">
+                            <i class="fab fa-whatsapp text-orange-500"></i> WhatsApp
+                        </a>
+                    </div>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- ── CTA ── -->
+    <!-- CTA -->
     <section class="gradient-bg text-white py-16 md:py-20">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Make a Difference Today</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Have Questions About Donating?</h2>
             <p class="text-lg text-gray-200 mb-8 max-w-2xl mx-auto">
-                Your contribution helps us continue our mission of transforming lives through love and compassion.
+                Our team is happy to guide you through the process or discuss other ways you can support our mission.
             </p>
-            <a href="{% url 'donate' %}"
-               class="orange-gradient text-white px-10 py-3.5 rounded-full font-semibold text-lg hover:opacity-90 transition inline-block">
-                <i class="fas fa-heart mr-2"></i> Donate Now
+            <a href="#" class="orange-gradient text-white px-10 py-3.5 rounded-full font-semibold text-lg hover:opacity-90 transition inline-block">
+                <i class="fas fa-envelope mr-2"></i> Contact Us
             </a>
         </div>
     </section>
+
+    <script>
+        function setAmount(btn, val) {
+            document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            document.getElementById('amountInput').value = val;
+        }
+        function clearPills() {
+            document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
+        }
+        function setFreq(btn) {
+            document.querySelectorAll('.freq-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+        const panels = { card:'panelCard', momo:'panelMomo', paypal:'panelPaypal', bank:'panelBank' };
+        function setPayment(btn, method) {
+            document.querySelectorAll('.pay-tab').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('paymentInput').value = method;
+            Object.values(panels).forEach(id => document.getElementById(id).classList.add('hidden'));
+            document.getElementById(panels[method]).classList.remove('hidden');
+        }
+        document.getElementById('cardNumber').addEventListener('input', function () {
+            let v = this.value.replace(/\D/g,'').substring(0,16);
+            this.value = v.replace(/(.{4})/g,'$1 ').trim();
+        });
+        document.getElementById('cardExpiry').addEventListener('input', function () {
+            let v = this.value.replace(/\D/g,'').substring(0,4);
+            if (v.length >= 3) v = v.slice(0,2) + ' / ' + v.slice(2);
+            this.value = v;
+        });
+    </script>
 
 {% endblock %}
