@@ -1,0 +1,40 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+body {
+    font-family: "Inter", sans-serif;
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, #3d2f47 0%, #2d1f37 100%);
+}
+.orange-gradient {
+    background: linear-gradient(135deg, #ff9f40 0%, #ff8520 100%);
+}
+
+.hover-lift {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.nav-link {
+    position: relative;
+}
+.nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #ff9f40;
+    transition: width 0.3s;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
